@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <title>征订订单管理</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/desk.css">
+    <style>
+        .container {
+            padding-top: 40px;
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
+    <div class="container">
+        <input id="code" v-model="driverCode" class="input-item" type="text" placeholder="司机编号">
+        <input id="name" v-model="password" class="input-item" type="password" placeholder="查询密码">
+        <input id="key" v-model="keyword" class="input-item" type="text" placeholder="选择订单">
+        <input id="img" v-model="keyword" class="input-item" type="text" placeholder="选择图片">
+        <button id="loginBtn" class="login-btn" @click="getOrder">确认</button>
+    </div>
+
     <!--<div class="gift-list-wrapper">-->
         <!--<p v-if="orderList.length === 0" style="text-align: center;line-height: 50px">没有相关数据</p>-->
         <!--<div class="wrapper">-->
