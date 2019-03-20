@@ -41,6 +41,11 @@ new Vue({
             }, function (result) {
                 if (result.statusCode === 200) {
                     self.orderList = result.data
+                } else {
+                    layer.open({
+                        content: result.msg,
+                        btn: '我知道了'
+                    });
                 }
             })
         }
