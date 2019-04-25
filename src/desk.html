@@ -10,6 +10,9 @@
             padding-top: 40px;
             background-color: #fff;
         }
+        [v-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -17,23 +20,35 @@
     <div class="container">
         <input v-model="driverCode" class="input-item" type="text" placeholder="司机编号">
         <input v-model="password" class="input-item" type="password" placeholder="查询密码">
-        <input v-model="orderInId" class="input-item" type="password" placeholder="订单Id">
+        <div class="input-item" style="color: #757575" @click="changeOrder">
+            <template v-if="orderName">
+                <span style="color: #333">{{orderName}}</span>
+            </template>
+            <template v-else>
+                选择订单
+            </template>
+        </div>
         <!--<div class="input-item" style="color: #757575">选择订单</div>-->
         <div class="input-item" style="color: #757575">
-            选择图片
+            <template v-if="fileName">
+                <span style="color: #333">{{fileName}}</span>
+            </template>
+            <template v-else>
+                选择图片
+            </template>
             <input id="img" class="input-file" type="file" placeholder="选择图片" @change="fileChange">
         </div>
-        <button class="login-btn">确认</button>
+        <button class="login-btn" @click="infoConfirm">确认</button>
     </div>
     <!--d81e06-->
-    <!--<div class="choose-mask">
+    <div v-if="isSelect" v-cloak class="choose-mask" @click="isSelect = false">
         <div class="choose-wrapper">
-            <div class="choose-item">
-                <img src="./img/icon_choose.png">
-                大法师
+            <div class="choose-item" v-for="item in orderList" :class="{active: item.orderInId === orderInId}" @click="chooseGoods(item)">
+                <img v-show="item.orderInId === orderInId" src="./img/icon_choose.png">
+                {{item.customer}}
             </div>
         </div>
-    </div>-->
+    </div>
 </div>
 <script src="./assets/jquery-3.3.1.min.js"></script>
 <script src="./assets/exif.js"></script>
